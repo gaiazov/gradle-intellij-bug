@@ -1,0 +1,8 @@
+plugins {
+  id 'java'
+  id 'nebula.source-jar' version '12.0.2' // Used to manage the version of the plugin for subprojects
+}
+
+configurations {
+  sources
+}
