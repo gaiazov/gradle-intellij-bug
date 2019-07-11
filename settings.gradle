@@ -1,29 +1,4 @@
 rootProject.name = 'gradle-intellij-bug'
 
-include 'sub-module'
-include 'child-module'
-
-// makes each module's build file be <module name>.gradle
-// instead of the default build.gradle.
-def moduleNameDotGradle = { project ->
-  project.buildFileName = "${project.name}.gradle"
-  // assertions exist so we don't break IDEA import.
-  // Gradle will create a project for each parent project, even if it's
-  // not includes in the 'include' directives above. This ensures that those
-  // projects have build files that exist.
-  // Also, this prevents a silly typo error where your 'include' name
-  // doesn't match the build file name.
-  assert project.buildFile.exists()
-  assert project.buildFile.isFile()
-}
-
-rootProject.children.each { project ->
-  def stack = [project]
-  while (stack) {
-    def p = stack.pop()
-    moduleNameDotGradle(p)
-    p.children.each {
-      stack.push(it)
-    }
-  }
-}
+include 'child1'
+include 'child2'

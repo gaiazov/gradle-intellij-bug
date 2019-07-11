@@ -3,5 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation project(path: ':sub-module', configuration: 'sources')
+    // This dependency breaks gradle re-import in 2019.2 EAP, ut works in 2019.1.3
+    //   Cannot change artifacts of configuration ':child2:sources' after it has been included in dependency resolution.
+    implementation project(path: ':child2', configuration: 'sources')
 }

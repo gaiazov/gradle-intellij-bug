@@ -1,20 +1,5 @@
-plugins {
-    id 'java'
-    id 'nebula.dependency-lock' version '4.9.4' apply false // Needed to apply by id later on in this build script
-    id 'nebula.source-jar' version '5.1.1' apply false // Used to manage the version of the plugin for subprojects
-    id 'com.appian.gradle.vulnerability-scan' version '1.0.8'
-}
-
-group 'gradle-intellij-bug'
-
-sourceCompatibility = 1.8
-
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 gradle.projectsEvaluated {
@@ -25,15 +10,4 @@ gradle.projectsEvaluated {
             }
         }
     }
-}
-
-allprojects {
-    ext.httpSetupScheme = 'http'
-    ext.hostname = InetAddress.getLocalHost().getHostName()
-
-    apply plugin: 'base'
-}
-
-allprojects {
-    apply plugin: 'com.appian.gradle.vulnerability-scan'
 }
